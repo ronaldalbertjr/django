@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'web0.apps.Web0Config',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
