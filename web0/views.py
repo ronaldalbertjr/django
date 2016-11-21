@@ -10,7 +10,7 @@ def index(resquest):
 
 def detail(resquest, album_id):
 	album = get_object_or_404(Album,id=album_id)
-	song = album.song_set.filter(is_favorite = True)
+	song = album.song_set.get(is_favorite=True)
 	ctx = {'album': album, 'song': song}
 	return render(resquest, 'web0/detail.html', ctx)
 
@@ -26,4 +26,5 @@ def favorite(resquest, album_id):
 			song.save() 
 		selected_song.is_favorite = True
 		selected_song.save()
-		return render(resquest, 'web0/detail.html', {'album': album})
+		ctx = {'album':album, 'song': selected_song}
+		return render(resquest, 'web0/detail.html', ctx)

@@ -1,6 +1,21 @@
+{% load staticfiles %}
 <html>
-<h3>Here are all my albums</h3>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{%static 'web0/css/style.css'%}">
+</head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+		<!-- Logo -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{% url 'web0:index'%}">
+				MusicApp
+				</a>
+			</div>
+		</div>
+	</nav>
+	<h3>Here are all my albums</h3>
 	{% if all_albums %}
 		<ul>
 			{% for album in all_albums%}
