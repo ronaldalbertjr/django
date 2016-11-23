@@ -1,38 +1,12 @@
-{% load staticfiles %}
-<html>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style>
-		img
-		{
-			display: inline-block;
-		}
-		h1
-		{
-			display: inline-block;
-			position: relative;
-			margin: auto;
-		}
-		body
-		{
-			background: white url("{% static 'web0/images/background.jpg'%}");
-		}
-	</style>
-</head>
-<body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-		<!-- Logo -->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="{% url 'web0:index'%}">
-				MusicApp
-				</a>
-			</div>
-		</div>
-	</nav>
+{% extends 'web0/base.html' %}
+{% block title %}
+	{{album}}
+{% endblock %}
+
+{% block body %}
 	<div>
-	<img src="{{album.album_logo}}" width="10%" />
-	<h1>{{album}}</h1>
+		<img src="{{album.album_logo}}" width="10%" />
+		<h1>{{album}}</h1>
 	</div>
 	<audio autoplay="autoplay" loop="loop">
 		<source src="{{song.song_src}}" type="audio/{{song.file_type}}" />
@@ -46,15 +20,14 @@
 	<form action="{% url 'web0:favorite' album.id%}" method="post">
 		{% csrf_token %}
 		{% for song in album.song_set.all %}
-		<input type="radio" id="song{{forloop.counter}}" name="song" value="{{song.id}}">
-		<label for="song {{forloop.counter}}">
-			{{song.song_title}}
-			{%if song.is_favorite%}
-				<img src="http://i.imgur.com/b9b13Rd.png">
-			{%endif%}
-		</label></br>
+			<input type="radio" id="song{{forloop.counter}}" name="song" value="{{song.id}}">
+			<label for="song {{forloop.counter}}">
+				{{song.song_title}}
+				{%if song.is_favorite%}
+					<img src="http://i.imgur.com/b9b13Rd.png">
+				{%endif%}
+			</label></br>
 		{%endfor%}
-		<input type="submit" value="Favorite">
+		<input type="submit" value="Play">
 	</form>	
-</body>	
-</html>
+{% endblock %}
