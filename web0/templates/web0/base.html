@@ -2,7 +2,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>{% block title%}MusicApp{% endblock %}</title>
+	<title>
+	{% block title%} 
+	MusicApp 
+	{% endblock %}
+	</title>
 	<link rel="icon" type="image/icon" href="{% static 'web0/images/websiteIcon.ico' %}">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy" type="text/css">
@@ -49,7 +53,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					<li class="#">
-						<a href="#">
+						<a href="{% url 'web0:album-add' %}">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Album
 						</a>
 					</li>
