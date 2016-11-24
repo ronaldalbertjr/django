@@ -11,4 +11,10 @@ urlpatterns = [
 
     # /web0/album/add/
     url(r'album/add/$', views.AlbumCreate.as_view(), name='album-add'),
+
+    #/web0/album/<album_id>/
+    url(r'album/(?P<pk>[0-9]+)/$', views.AlbumUpdate.as_view(), name='album-update'),
+
+    #/web0/album/<album_id>/delete
+    url(r'album/(?P<pk>[0-9]+)/delete/$', views.AlbumDelete.as_view(), name='album-delete'),
 ]

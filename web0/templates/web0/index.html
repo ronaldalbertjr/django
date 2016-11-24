@@ -5,7 +5,11 @@
 		<h3>Here are all my albums</h3>
 		<ul>
 			{% for album in all_albums%}
-				<li><a href="{% url 'web0:detail' album.id %}"> {{album.album_title}} </a></li>
+				<li>
+					<a href="{% url 'web0:detail' album.id %}"> {{album.album_title}} </a>
+					
+					<a href="{% url 'web0:album-update' album.id %}" class="btn btn-default btn-sm" style="display: inline;"> Update </a>
+				</li>
 			{% endfor %}
 		</ul>
 		{% else %}
