@@ -5,13 +5,13 @@
 
 {% block body %}
 	<div>
-		<img src="{{album.album_logo}}" width="10%" />
+		<img src="{{album.album_logo.url}}" width="10%" />
 		<h1>{{album}}</h1>
 	</div>
 	{%for song in album.song_set.all%}
 		{%if song.is_favorite %}
 			<audio autoplay="autoplay" loop="loop">
-				<source src="{{song.song_src}}" type="audio/{{song.file_type}}" />
+				<source src="{{song.song_src.url}}" type="audio/{{song.file_type}}" />
 			</audio>
 			<h3>
 				The song playing is {{song}}
@@ -26,4 +26,9 @@
 			{%endif%}
 			<br>
 	{%endfor%}
+
+	<a href="{% url 'web0:song-add' album.id %}" class="btn btn-default btn-sm">
+		Add song
+	</a>
+
 {% endblock %}

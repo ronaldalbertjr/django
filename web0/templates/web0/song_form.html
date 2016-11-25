@@ -5,10 +5,7 @@
 	<div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<p class="text-center">
-					{{album}}
-				</p>
-				<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+				<form class="form-horizontal" action="{% url 'web0:song-added' album.id %}" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					{%include 'web0/form-template.html'%}
 					<div class="form-group">

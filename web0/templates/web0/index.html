@@ -6,9 +6,17 @@
 		<ul>
 			{% for album in all_albums%}
 				<li>
-					<a href="{% url 'web0:detail' album.id %}"> {{album.album_title}} </a>
-					
-					<a href="{% url 'web0:album-update' album.id %}" class="btn btn-default btn-sm" style="display: inline;"> Update </a>
+					<a href="{% url 'web0:detail' album.id %}"> {{album.album_title}} - {{album.artist}} </a>
+					<a href="{% url 'web0:album-update' album.id %}" class="btn btn-default btn-sm"> 
+					Update 
+					</a>
+					<form action="{% url 'web0:album-delete' album.id %}" method="post" style="display: inline;">
+						{% csrf_token %}
+						<input type="hidden" name="album_id" value="{{album.id}}">
+						<button type="submit" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</form>
 				</li>
 			{% endfor %}
 		</ul>
