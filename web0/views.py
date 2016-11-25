@@ -43,6 +43,13 @@ def AddedSong(request, album_id):
 	a.file_type = request.POST['file_type']
 	a.song_title = request.POST['song_title']
 	a.song_src = request.FILES['song_src']
+	for song in a.album.song_set.all():
+		if song.is_favorite:
+			favorited = True
+		else:
+			favorited = False
+	if not favorited:
+		a.is_favorite = True
 	a.save()
 	return render(request, 'web0/song_added.html')
 
